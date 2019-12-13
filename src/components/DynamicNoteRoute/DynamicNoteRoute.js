@@ -1,17 +1,33 @@
 import React from "react";
-import STORE from "../../dummy-store";
+import { Link } from "react-router-dom";
 import "./DynamicNoteRoute.css";
 
 export default function DynamicNoteRoute(props) {
-  const note = STORE.notes.find(i => {
+  const note = props.notes.find(i => {
     return i.id === props.match.params.noteId;
   });
 
+  const folder = props.folders.find(i => {
+    return i.id === note.folderId;
+  });
+
   return (
-    <article className="notes">
-      <h2>{note.name}</h2>
-      <p>{note.content}</p>
-    </article>
+    <>
+      <section>
+        <Link to="/">
+          <h2>Go back</h2>
+        </Link>
+        <h2>{folder.name}</h2>
+      </section>
+      <article className="notes">
+        <div>
+          <h2>{note.name}</h2>
+          <code>{note.modified}</code>
+          <button>REMOVE</button>
+        </div>
+        <p>{note.content}</p>
+      </article>
+    </>
   );
 }
 
