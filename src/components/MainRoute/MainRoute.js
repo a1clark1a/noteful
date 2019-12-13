@@ -9,7 +9,7 @@ class MainRoute extends Component {
     const noteList = notes.map((note, i) => {
       return (
         <div key={`note${i}`} className="noteWrapper">
-          <Link to={`/${note.id}`}>
+          <Link to={`/note/${note.id}`}>
             <h2>{note.name}</h2>
           </Link>
           <span>{note.modified}</span>
@@ -21,7 +21,7 @@ class MainRoute extends Component {
     const folderList = folders.map((folder, i) => {
       return (
         <div key={`folder-${i}`} className="folderWrapper">
-          <Link to={`/${folder.id}`}>
+          <Link to={`/folder/${folder.id}`}>
             <h3>{folder.name}</h3>
           </Link>
           <code> num</code>
