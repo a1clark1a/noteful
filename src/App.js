@@ -18,11 +18,11 @@ class App extends Component {
           </nav>
         </header>
         <main className="App">
-          <Route path="/:folderId" component={DynamicFolder} />
           <Switch>
+            <Route path="/folder/:folderId" component={DynamicFolder} />
+            <Route path="/note/:noteId" component={DynamicNoteRoute} />
             <Route exact path="/" component={MainRoute} />
-            <Route path="/:noteId" component={DynamicNoteRoute} />
-            <Route component={Error} />
+            <Route path="/*" component={Error} />
           </Switch>
         </main>
       </>
