@@ -5,6 +5,7 @@ import NoteListMain from "../NoteListMain/NoteListMain";
 import NotePageNav from "../NotePageNav/NotePageNav";
 import NoteListNav from "../NoteListNav/NoteListNav";
 import STORE from "../dummy-store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getNotesForFolder, findNote, findFolder } from "../note-helpers";
 import "./App.css";
 
@@ -67,12 +68,30 @@ class App extends Component {
             }}
           />
         ))}
+        <Route
+          path="note/:noteId"
+          render={routeProps => {
+            const { noteId } = routeProps.match.params;
+            const note = findNote(notes, noteId);
+            return <NotePageMain {...routeProps} note={note} />;
+          }}
+        />
       </>
     );
   }
 
   render() {
-    return <main className="App">FREEEESH</main>;
+    return (
+      <div className="App">
+        <nav className="App_nav">{this.renderNavRoutes()}</nav>
+        <header className="App_header">
+          <h1>
+            <Link to="/">Noteful</Link> <FontAwesomeIcon icon="check-double" />
+          </h1>
+        </header>
+        <main className="App_main">{this.renderMainRoutes()}</main>
+      </div>
+    );
   }
 }
 
