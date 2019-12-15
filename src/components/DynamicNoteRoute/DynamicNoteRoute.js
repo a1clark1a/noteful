@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 import "./DynamicNoteRoute.css";
 
 export default function DynamicNoteRoute(props) {
-  const note = props.notes.find(i => {
+  const { folders, notes } = props;
+  const note = notes.find(i => {
     return i.id === props.match.params.noteId;
   });
 
-  const folder = props.folders.find(i => {
+  const folder = folders.find(i => {
     return i.id === note.folderId;
   });
 
+  console.log(props);
   return (
     <>
       <section>

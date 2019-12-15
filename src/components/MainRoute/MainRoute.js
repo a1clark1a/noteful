@@ -2,35 +2,49 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./MainRoute.css";
 
+const getNumofNotesInFolder = (folder, notes) => {
+  const notesArray = notes.filter(note => {
+    return note.folderId === folder.id;
+  });
+  return notesArray.length;
+};
+
 const MainRoute = props => {
-  const noteList = props.notes.map((note, i) => {
+  const { folders, notes } = props;
+  const noteList = notes.map((note, i) => {
     return (
-      <div key={`note${i}`} className="noteWrapper">
+      <li key={`note${i}`} className="noteWrapper">
         <Link to={`/note/${note.id}`}>
           <h2>{note.name}</h2>
         </Link>
         <span>{note.modified}</span>
         <button>Remove</button>
-      </div>
+      </li>
     );
   });
-  console.log(props.folders);
-  const folderList = props.folders.map((folder, i) => {
+  const folderList = folders.map((folder, i) => {
+    const num = getNumofNotesInFolder(folder, notes);
     return (
       <div key={`folder-${i}`} className="folderWrapper">
         <Link to={`/folder/${folder.id}`}>
           <h3>{folder.name}</h3>
         </Link>
-        <code> num</code>
+        <code> {num}</code>
       </div>
     );
   });
   return (
     <>
       <section>
-        <div className="sidebar">{folderList}</div>
+        <div className="sidebar">
+          {folderList}
+          <button>Add a folder</button>
+        </div>
       </section>
-      <section className="notesList">{noteList}</section>
+      <section className="notesList">
+        <ul>{noteList}</ul>
+        <button>Add a note</button>
+      </section>
     </>
   );
 };
