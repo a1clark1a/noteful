@@ -10,7 +10,8 @@ import "./App.css";
 class App extends Component {
   state = {
     notes: [],
-    folders: []
+    folders: [],
+    error: null
   };
 
   componentDidMount() {
@@ -48,6 +49,16 @@ class App extends Component {
       });
   };
 
+  deleteNote = noteId => {
+    const newNoteList = this.state.notes.filter(note => {
+      console.log(noteId);
+      return note.id !== noteId;
+    });
+    this.setState({
+      notes: newNoteList
+    });
+  };
+
   setFolders = folders => {
     console.log(folders);
     this.setState({ folders });
@@ -59,6 +70,11 @@ class App extends Component {
   };
 
   render() {
+    const contextValue = {
+      folders: this.state.folders,
+      notes: this.state.notes,
+      deleteNote: this.deleteNote
+    };
     return (
       <>
         <header>
@@ -69,12 +85,7 @@ class App extends Component {
           </nav>
         </header>
         <main className="App">
-          <NotefulContext.Provider
-            value={{
-              folders: this.state.folders,
-              notes: this.state.notes
-            }}
-          >
+          <NotefulContext.Provider value={contextValue}>
             <Switch>
               <Route path="/folder/:folderId" component={DynamicFolder} />
               <Route path="/note/:noteId" component={DynamicNoteRoute}></Route>

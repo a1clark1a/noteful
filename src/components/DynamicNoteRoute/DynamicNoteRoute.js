@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NotefulContext from "../../notefulContext";
+import DeleteNoteButton from "../DeleteNoteButton/DeleteNoteButton";
 import "./DynamicNoteRoute.css";
 
 export default class DynamicNoteRoute extends Component {
@@ -27,7 +28,9 @@ export default class DynamicNoteRoute extends Component {
           <div>
             <h2>{note.name}</h2>
             <code>{note.modified}</code>
-            <button>REMOVE</button>
+            <Link to="/">
+              <DeleteNoteButton noteId={note.id} />
+            </Link>
           </div>
           <p>{note.content}</p>
         </article>
