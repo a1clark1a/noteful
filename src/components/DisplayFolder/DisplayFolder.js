@@ -19,6 +19,7 @@ export default class DisplayFolder extends Component {
         </li>
       );
     });
+
     return (
       <ErrorBoundary>
         <ul>{folderList}</ul>

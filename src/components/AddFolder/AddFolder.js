@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NotefulContext from "../../notefulContext";
 import ValidationError from "../ValidationError/ValidationError";
+import ReactRouterPropTypes from "react-router-prop-types";
 import { validate } from "../ValidationError/HelperValidation";
 
 export default class AddFolder extends Component {
@@ -14,7 +15,9 @@ export default class AddFolder extends Component {
       }
     };
   }
-
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired
+  };
   static contextType = NotefulContext;
 
   updateName(name) {

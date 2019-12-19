@@ -3,17 +3,19 @@ import { Link } from "react-router-dom";
 import NotefulContext from "../../notefulContext";
 import DeleteNoteButton from "../DeleteNoteButton/DeleteNoteButton";
 import ErrorBoundary from "../Error/ErrorBoundary";
+import ReactRouterPropTypes from "react-router-prop-types";
 import "./DynamicNoteRoute.css";
 
 export default class DynamicNoteRoute extends Component {
   static contextType = NotefulContext;
-
+  static propTypes = {
+    match: ReactRouterPropTypes.match.isRequired
+  };
   render() {
     const { folders, notes } = this.context;
     const note = notes.find(i => {
       return i.id === this.props.match.params.noteId;
     });
-
     const folder = folders.find(i => {
       return i.id === note.folderId;
     });

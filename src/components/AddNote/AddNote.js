@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NotefulContext from "../../notefulContext";
 import { validate } from "../ValidationError/HelperValidation";
 import ValidationError from "../ValidationError/ValidationError";
+import PropTypes from "prop-types";
 
 export default class AddNote extends Component {
   constructor(props) {
@@ -166,3 +167,7 @@ export default class AddNote extends Component {
     );
   }
 }
+
+AddNote.propTypes = {
+  history: PropTypes.object.isRequired
+};
