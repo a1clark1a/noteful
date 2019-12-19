@@ -5,6 +5,9 @@ import DynamicFolder from "./components/DynamicFolderRoute/DynamicFolder";
 import DynamicNoteRoute from "./components/DynamicNoteRoute/DynamicNoteRoute";
 import Error from "./components/Error/Error";
 import NotefulContext from "./notefulContext";
+import AddFolder from "./components/AddFolder/AddFolder";
+import AddNote from "./components/AddNote/AddNote";
+
 import "./App.css";
 
 class App extends Component {
@@ -51,7 +54,6 @@ class App extends Component {
 
   deleteNote = noteId => {
     const newNoteList = this.state.notes.filter(note => {
-      console.log(noteId);
       return note.id !== noteId;
     });
     this.setState({
@@ -60,20 +62,32 @@ class App extends Component {
   };
 
   setFolders = folders => {
-    console.log(folders);
     this.setState({ folders });
   };
 
   setNotes = notes => {
-    console.log("notes", notes);
     this.setState({ notes });
+  };
+
+  addFolders = folder => {
+    this.setState({
+      folders: [...this.state.folders, folder]
+    });
+  };
+
+  addNotes = note => {
+    this.setState({
+      notes: [...this.state.notes, note]
+    });
   };
 
   render() {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
-      deleteNote: this.deleteNote
+      deleteNote: this.deleteNote,
+      addFolder: this.addFolders,
+      addNote: this.addNotes
     };
     return (
       <>
@@ -87,9 +101,11 @@ class App extends Component {
         <main className="App">
           <NotefulContext.Provider value={contextValue}>
             <Switch>
-              <Route path="/folder/:folderId" component={DynamicFolder} />
-              <Route path="/note/:noteId" component={DynamicNoteRoute}></Route>
               <Route exact path="/" component={MainRoute} />
+              <Route path="/folder/:folderId" component={DynamicFolder} />
+              <Route path="/note/:noteId" component={DynamicNoteRoute} />
+              <Route path="/AddFolder" component={AddFolder} />
+              <Route path="/AddNote" component={AddNote} />
               <Route path="/*" component={Error} />
             </Switch>
           </NotefulContext.Provider>

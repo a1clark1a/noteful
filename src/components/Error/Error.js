@@ -3,8 +3,8 @@ import "./Error.css";
 
 export default function Error() {
   return (
-    <div>
-      <span>PAGE NOT FOUND</span>
+    <div className="error_div">
+      <h2>PAGE NOT FOUND</h2>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NotefulContext from "../../notefulContext";
 import DeleteNoteButton from "../DeleteNoteButton/DeleteNoteButton";
+import ErrorBoundary from "../Error/ErrorBoundary";
 import "./DynamicNoteRoute.css";
 
 export default class DynamicNoteRoute extends Component {
@@ -17,7 +18,7 @@ export default class DynamicNoteRoute extends Component {
       return i.id === note.folderId;
     });
     return (
-      <>
+      <ErrorBoundary>
         <section>
           <Link to="/">
             <h2>Go back</h2>
@@ -34,11 +35,7 @@ export default class DynamicNoteRoute extends Component {
           </div>
           <p>{note.content}</p>
         </article>
-      </>
+      </ErrorBoundary>
     );
   }
 }
-
-DynamicNoteRoute.defaultProps = {
-  note: []
-};

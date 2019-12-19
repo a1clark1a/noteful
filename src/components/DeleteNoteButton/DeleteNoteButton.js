@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NotefulContext from "../../notefulContext";
+import PropTypes from "prop-types";
 
 export default class DeleteNoteButton extends Component {
   static contextType = NotefulContext;
@@ -41,4 +42,8 @@ export default class DeleteNoteButton extends Component {
 
 DeleteNoteButton.defaultProps = {
   onClick: () => {}
+};
+
+DeleteNoteButton.propTypes = {
+  noteId: PropTypes.string.isRequired
 };

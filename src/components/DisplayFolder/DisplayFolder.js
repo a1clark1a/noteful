@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NotefulContext from "../../notefulContext";
 import { getNumofNotesInFolder } from "../../helper";
+import ErrorBoundary from "../Error/ErrorBoundary";
 
 export default class DisplayFolder extends Component {
   static contextType = NotefulContext;
@@ -18,6 +19,13 @@ export default class DisplayFolder extends Component {
         </li>
       );
     });
-    return <ul>{folderList}</ul>;
+    return (
+      <ErrorBoundary>
+        <ul>{folderList}</ul>
+        <Link to="/AddFolder">
+          <button>ADD FOLDER</button>
+        </Link>
+      </ErrorBoundary>
+    );
   }
 }

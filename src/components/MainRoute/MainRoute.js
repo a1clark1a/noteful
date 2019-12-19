@@ -1,23 +1,22 @@
 import React, { Component } from "react";
 import DisplayFolder from "../DisplayFolder/DisplayFolder";
 import DisplayNoteList from "../DisplayNotesList/DisplayNotesList";
+import ErrorBoundary from "../Error/ErrorBoundary";
 import "./MainRoute.css";
 
 class MainRoute extends Component {
   render() {
     return (
-      <>
+      <ErrorBoundary>
         <section>
           <div className="sidebar">
             <DisplayFolder />
-            <button>Add a folder</button>
           </div>
         </section>
         <section className="notesList">
           <DisplayNoteList />
-          <button>Add a note</button>
         </section>
-      </>
+      </ErrorBoundary>
     );
   }
 }
