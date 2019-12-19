@@ -41,9 +41,11 @@ export default class DeleteNoteButton extends Component {
 }
 
 DeleteNoteButton.defaultProps = {
-  onClick: () => {}
+  onClick: () => {},
+  deleteNote: () => {}
 };
 
 DeleteNoteButton.propTypes = {
-  noteId: PropTypes.string.isRequired
+  noteId: PropTypes.string.isRequired,
+  deleteNote: PropTypes.func.isRequired
 };

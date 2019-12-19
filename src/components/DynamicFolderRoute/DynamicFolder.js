@@ -4,6 +4,7 @@ import "./DynamicFolder.css";
 import DisplayNoteList from "../DisplayNotesList/DisplayNotesList";
 import ErrorBoundary from "../Error/ErrorBoundary";
 import ReactRouterPropTypes from "react-router-prop-types";
+import PropTypes from "prop-types";
 
 export default class DynamicFolder extends Component {
   static propTypes = {
@@ -23,3 +24,7 @@ export default class DynamicFolder extends Component {
     );
   }
 }
+
+DynamicFolder.propTypes = {
+  folderId: PropTypes.string.isRequired
+};

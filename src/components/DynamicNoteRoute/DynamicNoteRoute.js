@@ -4,10 +4,16 @@ import NotefulContext from "../../notefulContext";
 import DeleteNoteButton from "../DeleteNoteButton/DeleteNoteButton";
 import ErrorBoundary from "../Error/ErrorBoundary";
 import ReactRouterPropTypes from "react-router-prop-types";
+import PropTypes from "prop-types";
 import "./DynamicNoteRoute.css";
+import DynamicFolder from "../DynamicFolderRoute/DynamicFolder";
 
 export default class DynamicNoteRoute extends Component {
   static contextType = NotefulContext;
+  static defaultProps = {
+    folders: [],
+    notes: []
+  };
   static propTypes = {
     match: ReactRouterPropTypes.match.isRequired
   };
@@ -41,3 +47,21 @@ export default class DynamicNoteRoute extends Component {
     );
   }
 }
+
+DynamicFolder.propTypes = {
+  folders: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired
+    })
+  ),
+  notes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      modified: PropTypes.string.isRequired,
+      folderId: PropTypes.string.isRequired,
+      content: PropTypes.string
+    })
+  )
+};

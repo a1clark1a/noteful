@@ -3,6 +3,7 @@ import NotefulContext from "../../notefulContext";
 import ValidationError from "../ValidationError/ValidationError";
 import ReactRouterPropTypes from "react-router-prop-types";
 import { validate } from "../ValidationError/HelperValidation";
+import PropTypes from "prop-types";
 
 export default class AddFolder extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class AddFolder extends Component {
       }
     };
   }
+
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired
   };
@@ -101,3 +103,11 @@ export default class AddFolder extends Component {
     );
   }
 }
+
+AddFolder.defaultProps = {
+  addFolder: () => {}
+};
+
+AddFolder.propTypes = {
+  addFolder: PropTypes.func.isRequired
+};

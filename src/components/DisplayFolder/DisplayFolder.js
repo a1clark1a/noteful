@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import NotefulContext from "../../notefulContext";
 import { getNumofNotesInFolder } from "../../helper";
 import ErrorBoundary from "../Error/ErrorBoundary";
+import PropTypes from "prop-types";
 
 export default class DisplayFolder extends Component {
   static contextType = NotefulContext;
@@ -30,3 +31,26 @@ export default class DisplayFolder extends Component {
     );
   }
 }
+
+DisplayFolder.defaultProps = {
+  folders: [],
+  notes: []
+};
+
+DisplayFolder.propTypes = {
+  folders: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired
+    })
+  ),
+  notes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      modified: PropTypes.string.isRequired,
+      folderId: PropTypes.string.isRequired,
+      content: PropTypes.string
+    })
+  )
+};

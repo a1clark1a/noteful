@@ -37,9 +37,19 @@ export default class DisplayNoteList extends Component {
 }
 
 DisplayNoteList.defaultProps = {
-  clickedfolderId: ""
+  clickedfolderId: "",
+  notes: []
 };
 
 DisplayNoteList.propTypes = {
-  clickedfolderId: PropTypes.string.isRequired
+  clickedfolderId: PropTypes.string.isRequired,
+  notes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      modified: PropTypes.string.isRequired,
+      folderId: PropTypes.string.isRequired,
+      content: PropTypes.string
+    })
+  )
 };
