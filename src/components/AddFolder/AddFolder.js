@@ -4,6 +4,7 @@ import ValidationError from "../ValidationError/ValidationError";
 import ReactRouterPropTypes from "react-router-prop-types";
 import { validate } from "../ValidationError/HelperValidation";
 import PropTypes from "prop-types";
+import config from "../config";
 
 export default class AddFolder extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ export default class AddFolder extends Component {
       id: folderId
     };
 
-    fetch(`http://localhost:9090/folders`, {
+    fetch(config.FOLDERS_API_ENDPOINT, {
       method: "POST",
       body: JSON.stringify(folderObject),
       headers: {
@@ -87,6 +88,8 @@ export default class AddFolder extends Component {
             className="addFolder_nameInput"
             name="name"
             id="name"
+            aria-label="Folder Name"
+            aria-required="true"
             onChange={e => this.updateName(e.target.value)}
           />
           {this.state.name.touched && (

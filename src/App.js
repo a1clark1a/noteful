@@ -7,6 +7,7 @@ import Error from "./components/Error/Error";
 import NotefulContext from "./notefulContext";
 import AddFolder from "./components/AddFolder/AddFolder";
 import AddNote from "./components/AddNote/AddNote";
+import config from "./components/config";
 
 import "./App.css";
 
@@ -23,7 +24,7 @@ class App extends Component {
   }
 
   getFolders = () => {
-    return fetch("http://localhost:9090/folders")
+    return fetch(config.FOLDERS_API_ENDPOINT)
       .then(resp => {
         if (resp.ok) {
           return resp.json();
@@ -38,7 +39,7 @@ class App extends Component {
   };
 
   getNotes = () => {
-    return fetch("http://localhost:9090/notes")
+    return fetch(config.NOTES_API_ENDPOINT)
       .then(resp => {
         if (resp.ok) {
           return resp.json();

@@ -3,6 +3,7 @@ import NotefulContext from "../../notefulContext";
 import { validate } from "../ValidationError/HelperValidation";
 import ValidationError from "../ValidationError/ValidationError";
 import PropTypes from "prop-types";
+import config from "../config";
 
 export default class AddNote extends Component {
   constructor(props) {
@@ -71,11 +72,11 @@ export default class AddNote extends Component {
       id: noteId,
       name: name.value,
       modified: date,
-      folderId: folderId.value,
+      folders_id: folderId.value,
       content: content.value
     };
 
-    fetch("http://localhost:9090/notes", {
+    fetch(config.NOTES_API_ENDPOINT, {
       method: "POST",
       body: JSON.stringify(noteObj),
       headers: {
@@ -122,6 +123,8 @@ export default class AddNote extends Component {
               className="addNote_nameInput"
               name="name"
               id="name"
+              aria-label="Note name"
+              aria-required="true"
               onChange={e => this.updateName(e.target.value)}
             />
             {this.state.name.touched && (
@@ -135,6 +138,7 @@ export default class AddNote extends Component {
               className="addNote_contentInput"
               name="content"
               id="content"
+              aria-label="Note content"
               onChange={e => this.updateContent(e.target.value)}
             />
           </fieldset>
@@ -142,6 +146,8 @@ export default class AddNote extends Component {
             <label htmlFor="folders">Select Folder</label>
             <select
               className="addNote_select"
+              aria-label="Folder to place the note in"
+              aria-required="true"
               onChange={e => this.updateSelect(e.target.value)}
             >
               <option></option>

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import NotefulContext from "../../notefulContext";
 import PropTypes from "prop-types";
+import config from "../config";
 
 export default class DeleteNoteButton extends Component {
   static contextType = NotefulContext;
   deleteNoteRequest(noteId, callBack) {
-    fetch(`http://localhost:9090/notes/${noteId}`, {
+    fetch(config.NOTES_API_ENDPOINT + `/${noteId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json"
@@ -17,7 +18,6 @@ export default class DeleteNoteButton extends Component {
             throw error;
           });
         }
-        return res.json();
       })
       .then(data => {
         callBack(noteId);
@@ -46,6 +46,6 @@ DeleteNoteButton.defaultProps = {
 };
 
 DeleteNoteButton.propTypes = {
-  noteId: PropTypes.string.isRequired,
+  noteId: PropTypes.number.isRequired,
   deleteNote: PropTypes.func.isRequired
 };
