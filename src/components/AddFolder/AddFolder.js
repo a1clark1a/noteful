@@ -79,30 +79,32 @@ export default class AddFolder extends Component {
 
   render() {
     return (
-      <form className="addFolder_Form" onSubmit={e => this.handleSubmit(e)}>
-        <h2>ADD FOLDER</h2>
-        <fieldset className="addFolder_group_name">
-          <label htmlFor="name">Name *</label>
-          <input
-            type="text"
-            className="addFolder_nameInput"
-            name="name"
-            id="name"
-            aria-label="Folder Name"
-            aria-required="true"
-            onChange={e => this.updateName(e.target.value)}
-          />
-          {this.state.name.touched && (
-            <ValidationError message={validate(this.state.name)} />
-          )}
-          <button type="submit" disabled={(this, validate(this.state.name))}>
-            ADD
+      <div className="form_wrapper">
+        <form className="addFolder_Form" onSubmit={e => this.handleSubmit(e)}>
+          <fieldset className="addFolder_group_name">
+            <legend>ADD FOLDER</legend>
+            <label htmlFor="name">Name *</label>
+            <input
+              type="text"
+              className="addFolder_nameInput"
+              name="name"
+              id="name"
+              aria-label="Folder Name"
+              aria-required="true"
+              onChange={e => this.updateName(e.target.value)}
+            />
+            {this.state.name.touched && (
+              <ValidationError message={validate(this.state.name)} />
+            )}
+            <button type="submit" disabled={(this, validate(this.state.name))}>
+              ADD
+            </button>
+          </fieldset>
+          <button type="button" onClick={this.handClickCancel}>
+            CANCEL
           </button>
-        </fieldset>
-        <button type="button" onClick={this.handClickCancel}>
-          CANCEL
-        </button>
-      </form>
+        </form>
+      </div>
     );
   }
 }

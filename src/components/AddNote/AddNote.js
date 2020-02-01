@@ -113,63 +113,65 @@ export default class AddNote extends Component {
       );
     });
     return (
-      <form className="addNote_Form" onSubmit={e => this.handleSubmit(e)}>
-        <fieldset className="addNote_group">
-          <legend>ADD NOTE</legend>
-          <fieldset className="nameInputField">
-            <label htmlFor="name">Name *</label>
-            <input
-              type="text"
-              className="addNote_nameInput"
-              name="name"
-              id="name"
-              aria-label="Note name"
-              aria-required="true"
-              onChange={e => this.updateName(e.target.value)}
-            />
-            {this.state.name.touched && (
-              <ValidationError message={validate(this.state.name)} />
-            )}
-          </fieldset>
-          <fieldset className="contentInputField">
-            <label htmlFor="content">Content </label>
-            <input
-              type="text"
-              className="addNote_contentInput"
-              name="content"
-              id="content"
-              aria-label="Note content"
-              onChange={e => this.updateContent(e.target.value)}
-            />
-          </fieldset>
-          <fieldset className="folderSelectField">
-            <label htmlFor="folders">Select Folder</label>
-            <select
-              className="addNote_select"
-              aria-label="Folder to place the note in"
-              aria-required="true"
-              onChange={e => this.updateSelect(e.target.value)}
+      <div className="form_wrapper">
+        <form className="addNote_Form" onSubmit={e => this.handleSubmit(e)}>
+          <fieldset className="addNote_group">
+            <legend>ADD NOTE</legend>
+            <fieldset className="nameInputField">
+              <label htmlFor="name">Name *</label>
+              <input
+                type="text"
+                className="addNote_nameInput"
+                name="name"
+                id="name"
+                aria-label="Note name"
+                aria-required="true"
+                onChange={e => this.updateName(e.target.value)}
+              />
+              {this.state.name.touched && (
+                <ValidationError message={validate(this.state.name)} />
+              )}
+            </fieldset>
+            <fieldset className="contentInputField">
+              <label htmlFor="content">Content </label>
+              <input
+                type="text"
+                className="addNote_contentInput"
+                name="content"
+                id="content"
+                aria-label="Note content"
+                onChange={e => this.updateContent(e.target.value)}
+              />
+            </fieldset>
+            <fieldset className="folderSelectField">
+              <label htmlFor="folders">Select Folder</label>
+              <select
+                className="addNote_select"
+                aria-label="Folder to place the note in"
+                aria-required="true"
+                onChange={e => this.updateSelect(e.target.value)}
+              >
+                <option></option>
+                {folderOptions}
+              </select>
+              {this.state.folders_id.touched && (
+                <ValidationError message={validate(this.state.folders_id)} />
+              )}
+            </fieldset>
+            <button
+              type="submit"
+              disabled={
+                validate(this.state.name) || validate(this.state.folders_id)
+              }
             >
-              <option></option>
-              {folderOptions}
-            </select>
-            {this.state.folders_id.touched && (
-              <ValidationError message={validate(this.state.folders_id)} />
-            )}
+              ADD NOTE
+            </button>
+            <button type="button" onClick={this.handleClickCancel}>
+              CANCEL
+            </button>
           </fieldset>
-          <button
-            type="submit"
-            disabled={
-              validate(this.state.name) || validate(this.state.folders_id)
-            }
-          >
-            ADD NOTE
-          </button>
-          <button type="button" onClick={this.handleClickCancel}>
-            CANCEL
-          </button>
-        </fieldset>
-      </form>
+        </form>
+      </div>
     );
   }
 }
