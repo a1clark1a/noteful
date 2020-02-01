@@ -1,5 +1,43 @@
 # NOTEFUL APP - Client
 
+## LIVE APP
+
+- https://a1clark1a-noteful-client.now.sh/
+
+## Summary
+
+- Note taking app that allows users to create notes and folders to store notes.
+
+## Tech Stack
+
+- React
+- React Router
+- React Context
+- JavaScript
+- JSX/HTML 5
+- CSS3
+- Zeit
+
+## Screenshots
+
+Landing Page
+
+![Home View](screenshots/Noteful-HomeView.PNG)
+
+Notes View
+
+![Notes View](screenshots/Noteful-NotesView.PNG)
+
+Add Notes view
+
+![Add Notes View](screenshots/Noteful-AddNotesView.PNG)
+
+Add Folders view
+
+![Add Folders View](screenshots/Noteful-AddFolderView.PNG)
+
+# CREATE REACT BUILD
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
