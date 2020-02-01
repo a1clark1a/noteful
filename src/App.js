@@ -53,9 +53,9 @@ class App extends Component {
       });
   };
 
-  deleteNote = noteId => {
+  deleteNote = notes_id => {
     const newNoteList = this.state.notes.filter(note => {
-      return note.id !== noteId;
+      return note.id !== notes_id;
     });
     this.setState({
       notes: newNoteList
@@ -95,7 +95,7 @@ class App extends Component {
         <header>
           <nav>
             <Link to="/">
-              <h1>Noteful App</h1>
+              <h1 className="title">NOTEFUL APP</h1>
             </Link>
           </nav>
         </header>
@@ -103,8 +103,8 @@ class App extends Component {
           <NotefulContext.Provider value={contextValue}>
             <Switch>
               <Route exact path="/" component={MainRoute} />
-              <Route path="/folder/:folderId" component={DynamicFolder} />
-              <Route path="/note/:noteId" component={DynamicNoteRoute} />
+              <Route path="/folder/:folders_id" component={DynamicFolder} />
+              <Route path="/note/:notes_id" component={DynamicNoteRoute} />
               <Route path="/AddFolder" component={AddFolder} />
               <Route path="/AddNote" component={AddNote} />
               <Route path="/*" component={Error} />

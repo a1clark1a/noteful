@@ -4,27 +4,22 @@ import "./DynamicFolder.css";
 import DisplayNoteList from "../DisplayNotesList/DisplayNotesList";
 import ErrorBoundary from "../Error/ErrorBoundary";
 import ReactRouterPropTypes from "react-router-prop-types";
-import PropTypes from "prop-types";
 
 export default class DynamicFolder extends Component {
   static propTypes = {
     match: ReactRouterPropTypes.match.isRequired
   };
   render() {
-    const clickedfolder = this.props.match.params.folderId;
+    const clickedfolder = Number(this.props.match.params.folders_id);
     return (
       <ErrorBoundary>
         <section className="sidebar">
           <DisplayFolder />
         </section>
-        <section className="noteList">
+        <section className="notesList">
           <DisplayNoteList clickedfolderId={clickedfolder} />
         </section>
       </ErrorBoundary>
     );
   }
 }
-
-DynamicFolder.propTypes = {
-  folderId: PropTypes.string.isRequired
-};

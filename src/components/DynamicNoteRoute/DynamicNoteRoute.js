@@ -19,29 +19,33 @@ export default class DynamicNoteRoute extends Component {
   };
   render() {
     const { folders, notes } = this.context;
+
     const note = notes.find(i => {
-      return i.id === this.props.match.params.noteId;
+      return i.id === Number(this.props.match.params.notes_id);
     });
     const folder = folders.find(i => {
-      return i.id === note.folderId;
+      return i.id === note.folders_id;
     });
+    const date = new Date(note.modified);
     return (
       <ErrorBoundary>
-        <section>
+        <article className="sidebar">
           <Link to="/">
-            <h2>Go back</h2>
+            <button className="goBack_button">Go back</button>
           </Link>
-          <h2>{folder.name}</h2>
-        </section>
-        <article className="notes">
-          <div>
-            <h2>{note.name}</h2>
-            <code>{note.modified}</code>
-            <Link to="/">
-              <DeleteNoteButton noteId={note.id} />
-            </Link>
+          <div className="folder_name">
+            <h2>{folder.name}</h2>
           </div>
-          <p>{note.content}</p>
+        </article>
+        <article className="note_article">
+          <h2>{note.name}</h2>
+          <code>Date modified: {date.toLocaleDateString()}</code>
+          <Link to="/">
+            <DeleteNoteButton notes_id={note.id} />
+          </Link>
+          {/* TODO add an Update notes component */}
+
+          <p className="note_content">{note.content}</p>
         </article>
       </ErrorBoundary>
     );

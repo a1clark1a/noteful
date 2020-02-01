@@ -8,10 +8,8 @@ class MainRoute extends Component {
   render() {
     return (
       <ErrorBoundary>
-        <section>
-          <div className="sidebar">
-            <DisplayFolder />
-          </div>
+        <section className="sidebar">
+          <DisplayFolder />
         </section>
         <section className="notesList">
           <DisplayNoteList />

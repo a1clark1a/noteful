@@ -1,0 +1,7 @@
+.folderWrapper {
+  margin-top: 5px;
+  border: 1px black solid;
+  border-left: 0;
+  border-top-right-radius: 10%;
+  background-color: rgb(214, 161, 25);
+}

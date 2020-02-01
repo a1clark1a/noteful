@@ -5,8 +5,8 @@ import config from "../config";
 
 export default class DeleteNoteButton extends Component {
   static contextType = NotefulContext;
-  deleteNoteRequest(noteId, callBack) {
-    fetch(config.NOTES_API_ENDPOINT + `/${noteId}`, {
+  deleteNoteRequest(notes_id, callBack) {
+    fetch(config.NOTES_API_ENDPOINT + `/${notes_id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json"
@@ -20,7 +20,7 @@ export default class DeleteNoteButton extends Component {
         }
       })
       .then(data => {
-        callBack(noteId);
+        callBack(notes_id);
       })
       .catch(error => {
         console.log(error);
@@ -30,8 +30,9 @@ export default class DeleteNoteButton extends Component {
   render() {
     return (
       <button
+        className="remove_button"
         onClick={() => {
-          this.deleteNoteRequest(this.props.noteId, this.context.deleteNote);
+          this.deleteNoteRequest(this.props.notes_id, this.context.deleteNote);
         }}
       >
         REMOVE
@@ -46,6 +47,6 @@ DeleteNoteButton.defaultProps = {
 };
 
 DeleteNoteButton.propTypes = {
-  noteId: PropTypes.number.isRequired,
+  notes_id: PropTypes.number.isRequired,
   deleteNote: PropTypes.func.isRequired
 };

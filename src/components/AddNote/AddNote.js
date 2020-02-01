@@ -14,7 +14,7 @@ export default class AddNote extends Component {
         value: "",
         touched: false
       },
-      folderId: {
+      folders_id: {
         input: "option",
         value: "",
         touched: false
@@ -48,7 +48,7 @@ export default class AddNote extends Component {
 
   updateSelect = option => {
     this.setState({
-      folderId: {
+      folders_id: {
         input: "option",
         value: option,
         touched: true
@@ -58,8 +58,8 @@ export default class AddNote extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { name, folderId, content } = this.state;
-    const noteId =
+    const { name, folders_id, content } = this.state;
+    const notes_id =
       Math.random()
         .toString(36)
         .substring(2, 15) +
@@ -69,10 +69,10 @@ export default class AddNote extends Component {
     const date = new Date().toUTCString();
 
     const noteObj = {
-      id: noteId,
+      id: notes_id,
       name: name.value,
       modified: date,
-      folders_id: folderId.value,
+      folders_id: folders_id.value,
       content: content.value
     };
 
@@ -153,14 +153,14 @@ export default class AddNote extends Component {
               <option></option>
               {folderOptions}
             </select>
-            {this.state.folderId.touched && (
-              <ValidationError message={validate(this.state.folderId)} />
+            {this.state.folders_id.touched && (
+              <ValidationError message={validate(this.state.folders_id)} />
             )}
           </fieldset>
           <button
             type="submit"
             disabled={
-              validate(this.state.name) || validate(this.state.folderId)
+              validate(this.state.name) || validate(this.state.folders_id)
             }
           >
             ADD NOTE

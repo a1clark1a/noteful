@@ -14,18 +14,21 @@ export default class DisplayFolder extends Component {
       return (
         <li key={`folder-${i}`} className="folderWrapper">
           <Link to={`/folder/${folder.id}`}>
-            <h3>{folder.name}</h3>
+            <h3 className="individFolders_name">{folder.name}</h3>
           </Link>
-          <code> {num}</code>
+          <code> Notes: {num}</code>
+          {/* TODO add an Update Folder component */}
+          {/* TODO add an Delete Folder component */}
         </li>
       );
     });
 
     return (
       <ErrorBoundary>
+        <h2 className=" notes header">Folders</h2>
         <ul>{folderList}</ul>
         <Link to="/AddFolder">
-          <button>ADD FOLDER</button>
+          <button className="addFolder_button">ADD FOLDER</button>
         </Link>
       </ErrorBoundary>
     );
